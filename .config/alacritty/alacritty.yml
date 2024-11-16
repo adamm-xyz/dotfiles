@@ -1,5 +1,5 @@
-window:
-  decorations: none
+#window:
+  #decorations: none
 #font:
   #size: 10.0
   #startup_mode: Fullscreen
