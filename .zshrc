@@ -4,6 +4,7 @@ source $HOME/.zprofile
 autoload -U colors && colors
 PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -93,3 +94,15 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 #fix for weird yt-dlp behavior
 unsetopt nomatch
+
+TRAPUSR1() {
+  if [ "$scheme" = "night" ];then
+    #theme.sh gruvbox
+    ~/.local/bin/switchdark
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+  elif [ "$scheme" = "day" ]; then
+    #theme.sh belafonte-day
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+    ~/.local/bin/switchlight
+  fi
+}
